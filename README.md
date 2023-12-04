@@ -1,12 +1,11 @@
 # Introduction
-Simple repo to finetune an LLM hosted on Hugging Face (HF) by creating a LORA.
+Simple repo to finetune an LLM on your own hardware. Base models are pulled from Hugging Face (HF), LORA is created on new data, resulting model is merged from base+LORA.
 
-Uses the model base `Mistral-7B-Instruct-v0.1`.
+Repo creates a finetune of the the model base `Mistral-7B-Instruct-v0.1` pulled from HF.
 
-Code converts downloaded Slack messages into a format that enables the LLM to learn to respond like a specific target user.
+Takes in a folders of downloaded Slack messages and re-formats them to create a `train.csv` so that the LLM learns to respond like a specific target user.
 
 Training data is formatted with the Mistral format prompts:
-
 *  `<s>[INST] Message to target user [/INST] Target user response </s>`
 
 # Quickstart
