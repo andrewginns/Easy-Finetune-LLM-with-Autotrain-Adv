@@ -2,8 +2,8 @@ import os
 import shlex
 import subprocess
 
-PROJECT_NAME = 'my-custom-Mistral-7B-Instruct-v0.1'
-SOURCE_MODEL = 'mistralai/Mistral-7B-Instruct-v0.1'
+PROJECT_NAME = 'my-custom-Mistral-7B-Instruct-v0.2'
+SOURCE_MODEL = 'mistralai/Mistral-7B-Instruct-v0.2'
 proj_path = os.getcwd()
 DATA_PATH = os.path.join(proj_path, 'data')
 TEXT_COLUMN = 'text'

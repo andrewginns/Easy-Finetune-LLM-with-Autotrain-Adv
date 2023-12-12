@@ -59,15 +59,6 @@ test_lora:
 	# Test the LORA
 	python test_lora.py
 
-merge_lora_to_base:
-	# Deactivate any active environments
-	$(deactivate_conda)
-	# Activate env
-	conda activate $(ENV_NAME)
-	# Merge the LORA with the base model
-	python merge_lora.py
-
-
 remove-env:
 	# Deactivate any active environments
 	$(deactivate_conda)
