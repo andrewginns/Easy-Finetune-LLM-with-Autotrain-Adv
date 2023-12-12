@@ -35,3 +35,9 @@ Training data is formatted with the [Mistral instruction format](https://hugging
     * Will require an environment with the llama.cpp dependencies installed
 2. Quantise to the desired bpw
     * `./quantize /path/to/my-custom-Mistral-7B-Instruct-v0.2/my-custom-Mistral-7B-Instruct-v0.2.gguf /path/to/my-custom-Mistral-7B-Instruct-v0.2/ggml-model-q4_0.gguf q4_0`
+
+## Hardware Requirements
+Using the default repo configuration and `finetune_LLM.py` parameters to fine tune `Mistral-7B-Instruct-v0.2` requires ~24GB of VRAM.
+* Configuring `USE_INT4 = True` and `USE_INT8 = False` will decrease VRAM requirements by roughly half
+
+If you do not have enough VRAM you will experience CUDA errors.
