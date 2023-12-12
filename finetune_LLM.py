@@ -15,7 +15,8 @@ BATCH_SIZE = 1
 NUM_EPOCHS = 1
 TRAINER = "sft"
 USE_PEFT = True
-USE_INT4 = True
+USE_INT4 = False
+USE_INT8 = True
 TARGET_MODULES = "q_proj,v_proj"
 LORA_ALPHA = 32
 MERGE_ADAPTER = True
@@ -35,6 +36,7 @@ command = (
     f"--lora_alpha {LORA_ALPHA} "
     f"{'--use-peft' if USE_PEFT is True else ''} "
     f"{'--use-int4' if USE_INT4 is True else ''} "
+    f"{'--use-int8' if USE_INT8 is True else ''} "
     f"{'--merge-adapter' if MERGE_ADAPTER is True else ''} "
     f"{'--push-to-hub --token ' + HF_TOKEN + ' --repo-id ' + REPO_ID if PUSH_TO_HUB == 'True' else ''}"
 )
