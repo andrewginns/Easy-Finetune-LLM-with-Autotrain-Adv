@@ -20,12 +20,14 @@ Training data is formatted with the Mistral format prompts:
     * Outputs a csv `data/train.csv`
 
 3. `make fine_tune`
-    * Fine tune a Hugging Face model to respond like the target user on Slack
-    * Tests the LORA with a simple question "I can't access the code repo, do you know what's wrong?"
+    * Creates a command to fine tune a Hugging Face model to respond like the target user on Slack
     * Merges the LORA with the base HF model in pytorch format
         * Can be converted to GGUF directly by llama.cpp
-    * Outputs to a folder named `my-custom-Mistral-7B-Instruct-v0.1`
+    * Command will output to a folder named `my-custom-Mistral-7B-Instruct-v0.1`
 
-4. `make merge_lora_to_base`
+4. `make test_lora`
+    * Tests the LORA with a simple question "I can't access the code repo, do you know what's wrong?"
+
+5. `make merge_lora_to_base`
     * Merge the LORA to the base Hugging Face model
     * Outputs a merged model to a new folder `my-custom-Mistral-7B-Instruct-v0.1/merged_model`

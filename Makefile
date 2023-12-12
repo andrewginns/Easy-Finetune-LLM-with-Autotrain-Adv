@@ -27,9 +27,10 @@ env:
 
 slack_to_autotrain:
 	# Check if TARGET_USER has been changed from the default value
-	ifeq ($(TARGET_USER),default)
-	$(error Set TARGET_USER to a specific Slack user id)
-	endif
+	if [ "$(TARGET_USER)" = "default" ] ; then \
+		echo "Set TARGET_USER to a specific Slack user id"; \
+		exit 1; \
+	fi
 
 	# Deactivate any active environments
 	$(deactivate_conda)
@@ -45,16 +46,26 @@ slack_to_autotrain:
 fine_tune:
 	# Deactivate any active environments
 	$(deactivate_conda)
+	# Activate env
+	conda activate $(ENV_NAME)
 	# Use Hugging Face AutoTrain to create a LORA for a base model on Slack messages
-	$(CONDA_ACTIVATE) ; python finetune_LLM.py
+	python finetune_LLM.py
+
+test_lora:
+	# Deactivate any active environments
+	$(deactivate_conda)
+	# Activate env
+	conda activate $(ENV_NAME)
 	# Test the LORA
-	$(CONDA_ACTIVATE) ; python test_lora.py
+	python test_lora.py
 
 merge_lora_to_base:
 	# Deactivate any active environments
 	$(deactivate_conda)
+	# Activate env
+	conda activate $(ENV_NAME)
 	# Merge the LORA with the base model
-	$(CONDA_ACTIVATE) ; python merge_lora.py
+	python merge_lora.py
 
 
 remove-env:
