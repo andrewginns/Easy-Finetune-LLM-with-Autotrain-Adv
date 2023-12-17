@@ -1,5 +1,5 @@
 # Introduction
-Simple repo to finetune an LLM on your own hardware. Uses [Hugging Face's `autotrain-advanced`](https://huggingface.co/docs/autotrain/index#what-is-autotrain-advanced) to fine-tune a base model pulled from Hugging Face (HF). The [output LORA](https://www.promptingguide.ai/models/mistral-7b#chat-template-for-mistral-7b-instruct) is created on the fine-tuning data, and the resulting model is merged from base+LORA to be output as Pytorch checkpoints.
+Simple repo to finetune an LLM on your own hardware. Uses [Hugging Face's `autotrain-advanced`](https://huggingface.co/docs/autotrain/index#what-is-autotrain-advanced) to fine-tune a base model pulled from Hugging Face (HF). The [output LoRA](https://huggingface.co/docs/peft/conceptual_guides/lora) is created on the fine-tuning data, and the resulting model is merged from base+LoRA to be output as Pytorch checkpoints.
 
 The base format for the fine-tuning data is the [OpenAI format for fine-tuning](https://platform.openai.com/docs/guides/fine-tuning) to keep general usefulness high.
 
@@ -35,7 +35,7 @@ Utilises an example `json` obtained from slack with a tool like https://github.c
     * Once run the command will output to a folder named `my-custom-Mistral-7B-Instruct-v0.2`
 
 5. `make test_lora`
-    * Tests the LORA with a simple question "I can't access the code repo, do you know what's wrong?"
+    * Tests the LoRA with a simple question "I can't access the code repo, do you know what's wrong?"
 
 ## Converting the Output Fine-tuned Models to GGUF format
 
