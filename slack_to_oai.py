@@ -9,19 +9,21 @@ parser = argparse.ArgumentParser()
 # Add the arguments
 parser.add_argument('--target_user', type=str, required=True,
                     help='Slack user ID to extract messages and response for e.g. U027S88LZ6U')
-parser.add_argument('--output_path', type=str, default="slack_messages",
-                    help='Output path for extracted messages and responses')
+parser.add_argument('--input_path', type=str, default="slack_messages",
+                    help='Input path for slack-export json formatted messages and responses')
+parser.add_argument('--output_path', type=str, default="data",
+                    help='Output path for OpenAI jsonl formatted messages and responses')
 
 # Parse the arguments
 args = parser.parse_args()
 
-# Set your target user ID
+# Set your target user ID to use for the 'assistant' responses
 target_user = args.target_user
 print(f"Extracting data to respond like user {target_user}")
 
 # Initialize the root directory where your JSONL will be output
 proj_path = os.getcwd()
-root_dir = os.path.join(proj_path, args.output_path)
+root_dir = os.path.join(proj_path, args.input_path)
 
 # Create list to hold Slack data for JSONL output
 res = []
@@ -93,7 +95,7 @@ for dirpath, dirnames, filenames in os.walk(root_dir):
                 })
 
 # Save the results to a JSONL file
-with open('all_messages.jsonl', 'w') as outfile:
+with open(os.path.join(proj_path, args.output_path, 'all_messages.jsonl'), 'w') as outfile:
     for entry in res:
         json.dump(entry, outfile)
         outfile.write('\n')

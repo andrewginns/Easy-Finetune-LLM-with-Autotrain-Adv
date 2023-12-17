@@ -30,6 +30,6 @@ def jsonl_to_dataframe(jsonl_path):
 
 # Load OpenAI formatted jsonl
 proj_path = os.getcwd()
-jsonl_path = os.path.join(proj_path, 'all_messages.jsonl')
+jsonl_path = os.path.join(proj_path, 'data', 'all_messages.jsonl')
 df = jsonl_to_dataframe(jsonl_path)
 df.to_csv(os.path.join(proj_path, 'data/train.csv'), index=False)
