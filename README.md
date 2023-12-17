@@ -10,8 +10,11 @@ Training data is formatted with the [Mistral instruction format](https://hugging
 *  `<s>[INST] Message to target user [/INST] Target user response</s>`
 
 # Quickstart
-1. Utilises an example `json` obtained from slack with a tool like https://github.com/chr1spy1/slack-export/tree/master
+Utilises an example `json` obtained from slack with a tool like https://github.com/chr1spy1/slack-export/tree/master
     * Contains message history between users `U0XXXXXXXXXX` and `U0ZZZZZZZZZZ`
+
+1. `make env`
+    * Sets up the `autotrain` conda environment with required dependencies
 
 2. `make TARGET_USER=U0ZZZZZZZZZZ slack_to_oai`
     * Converts downloaded Slack messages to the [format needed by OpenAI](https://platform.openai.com/docs/guides/fine-tuning/example-format)
@@ -43,7 +46,7 @@ Training data is formatted with the [Mistral instruction format](https://hugging
     * `./quantize /path/to/my-custom-Mistral-7B-Instruct-v0.2/my-custom-Mistral-7B-Instruct-v0.2.gguf /path/to/my-custom-Mistral-7B-Instruct-v0.2/ggml-model-q4_0.gguf q4_0`
 
 ## Hardware Requirements
-Using the default repo configuration and `finetune_LLM.py` parameters to fine-tune `Mistral-7B-Instruct-v0.2` requires ~24GB of VRAM and ~3 hours of compute on an Nvidia A10G
+Fine-tuning on ~8K message pairs using the default repo configuration and `finetune_LLM.py` parameters to fine-tune `Mistral-7B-Instruct-v0.2` required ~24GB of VRAM and ~3 hours of compute on an Nvidia A10G
 * Configuring `USE_INT4 = True` and `USE_INT8 = False` will decrease VRAM requirements by roughly half
 
 If you do not have enough VRAM you will experience CUDA errors.
