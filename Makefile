@@ -25,13 +25,12 @@ env:
 	# Setup autotrain
 	conda activate $(ENV_NAME) ; autotrain setup
 
-slack_to_autotrain:
+slack_to_oai:
 	# Check if TARGET_USER has been changed from the default value
 	if [ "$(TARGET_USER)" = "default" ] ; then \
 		echo "Set TARGET_USER to a specific Slack user id"; \
 		exit 1; \
 	fi
-
 	# Deactivate any active environments
 	$(deactivate_conda)
 	# Add output path
@@ -40,6 +39,12 @@ slack_to_autotrain:
 	conda activate $(ENV_NAME)
 	# Convert Slack messages to OpenAI fine-tuning format
 	python slack_to_oai.py --target_user=$(TARGET_USER)
+
+oai_to_autotrain:
+	# Deactivate any active environments
+	$(deactivate_conda)
+	# Activate env
+	conda activate $(ENV_NAME)
 	# Convert OpenAI format to Hugging Face AutoTrain format
 	python convert_oai_to_autotrain.py
 
