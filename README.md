@@ -7,7 +7,7 @@ The [Quickstart](#quickstart) example shows an end-to-end example using Slack co
 
 
 Training data is formatted with the [Mistral instruction format](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2#instruction-format):
-*  `<s>[INST] Message to target user [/INST] Target user response </s>`
+*  `<s>[INST] Message to target user [/INST] Target user response</s>`
 
 # Quickstart
 1. Utilises an example `json` obtained from slack with a tool like https://github.com/chr1spy1/slack-export/tree/master
