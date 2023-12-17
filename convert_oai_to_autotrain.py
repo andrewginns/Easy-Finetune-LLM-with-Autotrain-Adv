@@ -21,7 +21,7 @@ def jsonl_to_dataframe(jsonl_path):
                 elif message['role'] == 'assistant':
                     record['output'] = message['content']
             # Format text in the way the model expects it (This is the Mistral format)
-            record['text'] = f"<s>[INST] {record['instruction']} [/INST] {record['output']} </s>"
+            record['text'] = f"<s>[INST] {record['instruction']} [/INST] {record['output']}</s>"
             data.append(record)
 
     df = pd.DataFrame(data)
