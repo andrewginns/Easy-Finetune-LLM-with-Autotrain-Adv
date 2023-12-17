@@ -1,9 +1,10 @@
 # Introduction
-Simple repo to finetune an LLM on your own hardware. Base models are pulled from Hugging Face (HF), LORA is created on new data, resulting model is merged from base+LORA.
+Simple repo to finetune an LLM on your own hardware. Base models are pulled from Hugging Face (HF). The output LORA is created on the fine-tuning data, and tge resulting model is merged from base+LORA to be output as Pytorch checkpoints.
 
-The repo allows you to take [OpenAI formatted datasets designed for fine-tuning](https://platform.openai.com/docs/guides/fine-tuning) and use them to finetune of the the model base `Mistral-7B-Instruct-v0.2` pulled from HF.
+The repo allows you to take [OpenAI formatted datasets designed for fine-tuning](https://platform.openai.com/docs/guides/fine-tuning) and use them with Hugging Face `autotrain` package to finetune the `Mistral-7B-Instruct-v0.2` model pulled automatically from HF.
 
-The [Quickstart](#quickstart) example The Slack messages to the OpenAI format Takes in a folders of downloaded Slack messages and re-formats them to create a `train.csv` so that the LLM learns to respond like a specific target user.
+The [Quickstart](#quickstart) example shows an end-to-end example using Slack conversations as the source for fine-tuning. 
+
 
 Training data is formatted with the [Mistral instruction format](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2#instruction-format):
 *  `<s>[INST] Message to target user [/INST] Target user response </s>`
@@ -17,10 +18,10 @@ Training data is formatted with the [Mistral instruction format](https://hugging
     * Data formatted so that the selected user `U0ZZZZZZZZZZ` message responses are set as the 'assistant' responses for fine-tuning
         * In actual use modify the value of `TARGET_USER` to a specific Slack id e.g. `U027S88LZ6U`
     * Uses very basic methods to extract the question-response flow between users
-    * Outputs a `jsonl` holding conversations between `user` and `assistant` to `data/all_messages.jsonl`
+    * Outputs a `jsonl` for OpenAI fine-tuning containing conversations between `user` and `assistant` to `data/all_messages.jsonl`
 
 3. `make oai_to_autotrain`
-    * Converts OAI formatted dataset of user-assisant message pairs to the format needed by `autotrain`
+    * Converts OpenAI formatted dataset of user-assisant message pairs to the format needed by `autotrain`
     * Outputs a `csv` file for fine-tuning to `data/train.csv`
 
 4. `make fine_tune`
