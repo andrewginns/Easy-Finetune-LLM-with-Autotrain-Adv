@@ -1,12 +1,12 @@
 # Introduction
-Simple repo to finetune an LLM on your own hardware. Base models are pulled from Hugging Face (HF). The output LORA is created on the fine-tuning data, and tge resulting model is merged from base+LORA to be output as Pytorch checkpoints.
+Simple repo to finetune an LLM on your own hardware. Uses [Hugging Face's `autotrain-advanced`](https://huggingface.co/docs/autotrain/index#what-is-autotrain-advanced) to fine-tune a base model pulled from Hugging Face (HF). The [output LORA](https://www.promptingguide.ai/models/mistral-7b#chat-template-for-mistral-7b-instruct) is created on the fine-tuning data, and the resulting model is merged from base+LORA to be output as Pytorch checkpoints.
 
-The repo allows you to take [OpenAI formatted datasets designed for fine-tuning](https://platform.openai.com/docs/guides/fine-tuning) and use them with Hugging Face `autotrain` package to finetune the `Mistral-7B-Instruct-v0.2` model pulled automatically from HF.
+The base format for the fine-tuning data is the [OpenAI format for fine-tuning](https://platform.openai.com/docs/guides/fine-tuning) to keep general usefulness high.
 
-The [Quickstart](#quickstart) example shows an end-to-end example using Slack conversations as the source for fine-tuning. 
+The [Quickstart](#quickstart) shows an end-to-end example using Slack conversations as the source for fine-tuning of `Mistral-7B-Instruct-v0.2` pulled automatically from HF.
+* Data is first converted to the OpenAI fine-tuning format before being used with `autotrain`
 
-
-Training data is formatted with the [Mistral instruction format](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2#instruction-format):
+Conversations are formatted with the [Mistral instruction format](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2#instruction-format):
 *  `<s>[INST] Message to target user [/INST] Target user response</s>`
 
 # Quickstart
