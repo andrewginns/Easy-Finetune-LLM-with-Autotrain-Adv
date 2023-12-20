@@ -1,6 +1,4 @@
 import os
-import shlex
-import subprocess
 
 # Data configs
 PROJECT_NAME = 'my-custom-Mistral-7B-Instruct-v0.2'
@@ -41,11 +39,5 @@ command = (
     f"{'--push-to-hub --token ' + HF_TOKEN + ' --repo-id ' + REPO_ID if PUSH_TO_HUB == 'True' else ''}"
 )
 
-# Note: Running inline doesn't function properly as required conda env isn't activated
-# Split the command string into a sequence of program arguments
-# args = shlex.split(command)
-# Run the command and allow terminal output
-# subprocess.run(args) - Fails as an active environment cannot be defined for the subprocess to use
-
-# Tell user to run a printed command
-print(f"\n\nRun the following command in the bash terminal with the envrionment active:\n\n{command}")
+# Run the following command in the bash terminal with the envrionment active:
+print(command)

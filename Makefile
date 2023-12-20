@@ -8,6 +8,8 @@ CONDA_BASE = $(shell conda info --base)
 CONDA_ACTIVATE = source $(CONDA_BASE)/etc/profile.d/conda.sh ; conda activate
 ENV_NAME = autotrain
 ENV_FILE = environment/autotrain.yml
+# Define the command file
+COMMAND_FILE = fine_tune.txt
 
 # Define any reusable blocks that are not targets
 define deactivate_conda
@@ -48,13 +50,20 @@ oai_to_autotrain:
 	# Convert OpenAI format to Hugging Face AutoTrain format
 	python convert_oai_to_autotrain.py
 
+execute_fine_tune:
+	# Activate env
+	conda activate $(ENV_NAME)
+	# Execute command from the .txt file
+	@$(shell cat $(COMMAND_FILE))
+
 fine_tune:
 	# Deactivate any active environments
 	$(deactivate_conda)
 	# Activate env
 	conda activate $(ENV_NAME)
 	# Use Hugging Face AutoTrain to create a LORA for a base model on Slack messages
-	python finetune_LLM.py
+	python finetune_LLM.py > $(COMMAND_FILE) 
+	$(MAKE) execute_fine_tune
 
 test_lora:
 	# Deactivate any active environments

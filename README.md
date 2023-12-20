@@ -28,9 +28,9 @@ Utilises an example `json` obtained from slack with a tool like https://github.c
     * Outputs a `csv` file for fine-tuning to `data/train.csv`
 
 4. `make fine_tune`
-    * Creates a command to fine-tune a Hugging Face model to respond like the target user on Slack
-        * Run the printed output in terminal
+    * Fine-tunes a Hugging Face model to respond like the target user on Slack
         * [Optionally] Configure in `finetune_LLM.py`
+        * Command executed is stored in `fine_tune.txt`
     * Example `data/train.csv` only contains 4 examples to fine-tune. Actual use should have 1000's of examples for decently tuned models
     * Once run the command will output to a folder named `my-custom-Mistral-7B-Instruct-v0.2`
 
